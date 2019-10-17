@@ -1,0 +1,252 @@
+<html>
+
+<head>
+    <title>{{@blog.title}}</title>
+    <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+    <script type="text/javascript">
+        var imgList = ['50pieces', 'wj', 'imghist', 'thecost'];
+        var imgIndex = 0;
+        var imgCache = new Image();
+        var passiveImgTimeout;
+
+        function imgName(idx) {
+            return 'images/' + imgList[idx] + '_medium.png';
+        }
+        function nextImage() {
+            advanceBy(1, true);
+        }
+        function oldNextImage() {
+            if (typeof duration === 'undefined') duration = 400;
+            $("#fading-img").fadeOut(duration, function () {
+                imgIndex = ((imgIndex + delta) % imgList.length);
+                var nextImgIndex = ((imgIndex + 1) % imgList.length);
+                $("#fading-img").attr("src", imgName(imgIndex));
+                setTimeout(function () {
+                    $("#fading-img").css({ display: 'inline', opacity: 1 });
+                    setTimeout(function () {
+                        $("#fading-img-div").css({ background: 'url("' + imgName(nextImgIndex) + '")' });
+                    }, 1000);
+                }, 1000);
+            });
+        }
+        function setDivBkgToIndex(idx) {
+            $("#fading-img-div").css({ background: 'url("' + imgName(idx) + '")' });
+        }
+        function advanceBy(delta, isPassive) {
+            clearTimeout(passiveImgTimeout);
+            imgIndex = ((imgIndex + delta + imgList.length) % imgList.length);
+            setDivBkgToIndex(imgIndex);
+            var duration = (isPassive ? 800 : 300);
+            $("#fading-img").fadeOut(duration, function () {
+                $("#fading-img").attr("src", imgName(imgIndex));
+                setTimeout(function () {
+                    $("#fading-img").css({ display: 'inline', opacity: 1 });
+                }, 10);
+            });
+            passiveImgTimeout = setTimeout(nextImage, 6 * 1000);
+        }
+        function toImgDst() {
+            window.location = 'a/' + imgList[imgIndex];
+        }
+        $(document).ready(function () {
+            for (var i = 0; i < imgList.length; i++) {
+                imgCache.src = imgName(i);
+            }
+            // First fade is faster than subsequent ones.
+            setTimeout(function () {
+                nextImage();
+                passiveImgTimeout = setTimeout(nextImage, 6 * 1000);
+            }, 3 * 1000);
+            $("#go-prev").click(function () { advanceBy(-1); });
+            $("#go-next").click(function () { advanceBy(1); });
+            $("#fading-img").click(toImgDst);
+            $("#fading-img-div").click(toImgDst);
+            $("#left-img").click(function () {
+                window.location = "a/writing-about-philosophy/";
+            });
+        });
+    </script>
+    <link href='http://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
+    <style>
+        html {
+            //background-color: #E8E8EC;
+        }
+
+        body {
+            width: 800px;
+            font-family: 'PT Serif';
+            font-size: 19pt;
+            border-radius: 10px;
+            margin: 10px auto 50px auto;
+        }
+
+        p {
+            margin: 30px 0 10px;
+        }
+
+        hr {
+            margin: 0;
+            padding: 0;
+            border-width: 1px 0 0 0;
+            border-style: solid;
+            border-color: #CCC;
+            height: 7px;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .outer-p {
+            margin: 40px 0 10px;
+        }
+
+        .outer-div {
+            width: 800px;
+            //border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .outer-holder {
+            position: relative;
+        }
+
+        .content-holder {
+            background-color: white;
+            //border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .text-content-holder {
+            padding: 5px 15px;
+        }
+
+        .content-overlay {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            box-shadow: 0 2px 3px rgba(255, 255, 255, 0.7), inset 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .top-img-div {
+            display: inline-block;
+        }
+
+        .arrows {
+            font-weight: normal;
+            font-style: normal;
+            font-size: 20pt;
+            display: inline-block;
+            margin-top: -6px;
+            margin-right: 10px;
+            text-shadow: 0 0 1px black;
+        }
+
+        #left-img-div {
+            border: 1px solid #CCC;
+            border-width: 0 1px 0 0;
+            margin-left: -1px; // TODO Make this more robust for non-white-left-edge images.
+        }
+
+        #name-div {
+            padding: 10px 0;
+            margin-bottom: 10px;
+        }
+
+        #fading-img-div {
+            width: 350px;
+            height: 140px;
+            cursor: pointer;
+        }
+
+        #fading-img {
+            cursor: pointer;
+        }
+
+        #left-img {
+            cursor: pointer;
+        }
+
+        #top-hr {
+            border-width: 1px 1px 0 1px;
+            margin-bottom: 10px;
+            margin-top: 100px;
+        }
+
+        #bottom-hr {
+            border-width: 0 1px 1px 1px;
+            margin-top: 30px;
+        }
+
+        #left-hr {
+            margin-right: auto;
+            width: 200px;
+            border-width: 0 0 1px 1px;
+        }
+
+        #right-hr {
+            margin-left: auto;
+            width: 200px;
+            border-width: 0 1px 1px 0;
+        }
+
+        #go-prev,
+        #go-next {
+            cursor: pointer;
+        }
+
+        .description {
+            color: #949494;
+        }
+
+        body {
+            background-color: #fffff8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="outer-div" id="name-div">
+        <h1>
+            <a href="/">
+                {{@blog.title}}
+            </a>
+        </h1>
+        <p class="description">{{@blog.description}}</p>
+    </div>
+
+    <br>
+    <hr />
+    <br>
+
+    {{!-- The main content area --}}
+    <div class="outer-holder">
+        <main id="site-main" class="site-main outer">
+            <div class="inner">
+
+                <div class="post-feed">
+                    {{#foreach posts}}
+                    <p><a href="{{url}}">{{title}}</a></p>
+
+
+
+                    {{/foreach}}
+                </div>
+
+            </div>
+    </div>
+    </main>
+
+
+</body>
+
+</html>
