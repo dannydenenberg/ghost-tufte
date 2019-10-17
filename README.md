@@ -2,7 +2,7 @@
 
 A fantastic looking [Ghost](https://ghost.org) blog theme styled using [Edward Tufte CSS](https://github.com/edwardtufte/tufte-css). A great theme to use if you are an academic of any kind or just love the old parchment feel 📜.
 
-Ghost Tufte uses [Katex](https://katex.org/) to render all math. To write math, simply type `$$` to begin or end a 'display' rendering. For inline renderings type `\\(` to begin, and `\\)` to end.
+Ghost Tufte uses [Katex](https://katex.org/) to render all math. To write math, simply type `$$` to begin or end a 'display' rendering. For inline renderings type `\(` to begin, and `\)` to end.
 
 &nbsp;
 
