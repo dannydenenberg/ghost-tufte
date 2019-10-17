@@ -2,7 +2,28 @@
 
 A fantastic looking [Ghost](https://ghost.org) blog theme styled using [Edward Tufte CSS](https://github.com/edwardtufte/tufte-css). A great theme to use if you are an academic of any kind or just love the old parchment feel 📜.
 
-Ghost Tufte uses [Katex](https://katex.org/) to render all math. To write math, simply type `$$` to begin or end a 'display' rendering. For inline renderings type `\(` to begin, and `\)` to end.
+To use [Katex](https://katex.org/) to render all math, simple inject this code into the header:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.css"
+  integrity="sha384-BdGj8xC2eZkQaxoQ8nSLefg4AV4/AwB3Fj+8SUSo7pnKP6Eoy18liIKTPn9oBYNG" crossorigin="anonymous" />
+
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.js"
+  integrity="sha384-JiKN5O8x9Hhs/UE5cT5AAJqieYlOZbGT3CHws/y97o3ty4R7/O5poG9F3JoiOYw1" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/contrib/auto-render.min.js"
+  integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+  onload="renderMathInElement(document.body,{delimiters: [{left: '$$', right: '$$', display: true},{left: '\\[', right: '\\]', display: true},{left: '$', right: '$', display: false},{left: '\\(', right: '\\)', display: false}]});"></script>
+<style>
+  .katex {
+    font-size: 1em;
+  }
+</style>
+```
+
+Then, to write math, simply type `$$` to begin or end a 'display' rendering. For inline renderings type `\(` to begin, and `\)` to end.
 
 &nbsp;
 
