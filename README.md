@@ -6,7 +6,6 @@ Ghost Tufte uses [Katex](https://katex.org/) to render all math. To write math, 
 
 &nbsp;
 
-![screenshot](/Screenshots/BlogListings.png)
 ![screenshot](/Screenshots/ArticleView.png)
 
 &nbsp;
