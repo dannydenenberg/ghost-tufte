@@ -2,7 +2,7 @@
 
 A fantastic looking [Ghost](https://ghost.org) blog theme styled using [Edward Tufte CSS](https://github.com/edwardtufte/tufte-css). A great theme to use if you are an academic of any kind or just love the old parchment feel 📜.
 
-To use [Katex](https://katex.org/) to render all math, simple inject this code into the header:
+To use [Katex](https://katex.org/) to render all math, simply inject this code into the header:
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.css"
